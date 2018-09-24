@@ -1,7 +1,7 @@
 Summary:        A plymouth theme for XCP-ng
 Name:           xcp-ng-plymouth-theme
 Version:        1.0.0
-Release:        2
+Release:        3
 License:        GPLv2+
 Group:          System Environment/Base
 URL:            https://github.com/xcp-ng/xcp-ng-plymouth-theme
@@ -32,10 +32,12 @@ install -m 755 -p -D background.png progress_bar.png progress_box.png -t %{build
 %{regenerate_initrd_post}
 
 %postun
-if grep -q "^Theme *= *xcp-ng *$" "%{plymouthconf}"; then
-   /usr/sbin/plymouth-set-default-theme text
-   %{regenerate_initrd_postun}
+if [ $1 -eq 0 ]; then
+    if grep -q "^Theme *= *xcp-ng *$" "%{plymouthconf}"; then
+        /usr/sbin/plymouth-set-default-theme text
+    fi
 fi
+%{regenerate_initrd_postun}
 
 %posttrans
 %{regenerate_initrd_posttrans}
@@ -56,5 +58,8 @@ fi
 %{themedir}/progress_box.png
 
 %changelog
+* Mon Sep 24 2018 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.0.0-3
+- Fix upgrade issue: do not set theme back to text upon upgrade
+
 * Thu Sep 13 2018 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.0.0-2
 - Rebuild for XCP-ng 7.6.0
