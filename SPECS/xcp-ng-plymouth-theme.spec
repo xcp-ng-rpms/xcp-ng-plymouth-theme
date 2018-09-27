@@ -50,6 +50,10 @@ else
     echo ShowDelay = 0 >> %{plymouthconf}
 fi
 
+%triggerpostun -- xcp-ng-plymouth-theme <= 1.0.0-2
+# Workaround broken postun that would set theme to text when the package is updated
+/usr/sbin/plymouth-set-default-theme xcp-ng
+
 %files
 %{themedir}/xcp-ng.plymouth
 %{themedir}/xcp-ng.script
