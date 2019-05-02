@@ -1,7 +1,7 @@
 Summary:        A plymouth theme for XCP-ng
 Name:           xcp-ng-plymouth-theme
 Version:        1.0.0
-Release:        3%{dist}
+Release:        4%{dist}
 License:        GPLv2+
 Group:          System Environment/Base
 URL:            https://github.com/xcp-ng/xcp-ng-plymouth-theme
@@ -62,6 +62,9 @@ fi
 %{themedir}/progress_box.png
 
 %changelog
+* Thu May 02 2019 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.0.0-4
+- Rebuild for XCP-ng 8.0.0
+
 * Mon Sep 24 2018 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.0.0-3
 - Fix upgrade issue: do not set theme back to text upon upgrade
 
