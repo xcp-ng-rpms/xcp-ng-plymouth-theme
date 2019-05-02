@@ -1,7 +1,7 @@
 Summary:        A plymouth theme for XCP-ng
 Name:           xcp-ng-plymouth-theme
 Version:        1.0.0
-Release:        4%{dist}
+Release:        4%{?dist}
 License:        GPLv2+
 Group:          System Environment/Base
 URL:            https://github.com/xcp-ng/xcp-ng-plymouth-theme
