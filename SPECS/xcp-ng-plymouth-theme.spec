@@ -1,7 +1,7 @@
 Summary:        A plymouth theme for XCP-ng
 Name:           xcp-ng-plymouth-theme
 Version:        1.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPLv2+
 Group:          System Environment/Base
 URL:            https://github.com/xcp-ng/xcp-ng-plymouth-theme
@@ -9,7 +9,7 @@ Source0:        https://github.com/xcp-ng/xcp-ng-plymouth-theme/archive/v%{versi
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 BuildArch:      noarch
-Requires:       plymouth, plymouth-plugin-script, plymouth-graphics-libs, gnu-free-sans-fonts
+Requires:       plymouth, plymouth-plugin-script, plymouth-graphics-libs
 BuildRequires:  kernel-devel
 
 %define themedir     %{_datadir}/plymouth/themes/xcp-ng
@@ -62,6 +62,9 @@ fi
 %{themedir}/progress_box.png
 
 %changelog
+* Thu Jun 20 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.1.0-2
+- Remove unnecessary dependency to gnu-free-sans-font
+
 * Mon Nov 14 2022 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.1.0-1
 - New theme
 
