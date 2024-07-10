@@ -1,7 +1,7 @@
 Summary:        A plymouth theme for XCP-ng
 Name:           xcp-ng-plymouth-theme
 Version:        1.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPLv2+
 Group:          System Environment/Base
 URL:            https://github.com/xcp-ng/xcp-ng-plymouth-theme
@@ -11,6 +11,12 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}
 BuildArch:      noarch
 Requires:       plymouth, plymouth-plugin-script, plymouth-graphics-libs
 BuildRequires:  kernel-devel
+
+# XCP-ng: plymouth-scripts should require fontconfig but doesn't
+# As a consequence, when `/usr/libexec/plymouth/plymouth-populate-initrd` is called
+# during initrd generation, this causes many (non fatal) errors.
+# Add the dependency back here for now, despite we don't really use fonts.
+Requires:       fontconfig
 
 %define themedir     %{_datadir}/plymouth/themes/xcp-ng
 %define plymouthconf %{_sysconfdir}/plymouth/plymouthd.conf
@@ -62,6 +68,10 @@ fi
 %{themedir}/progress_box.png
 
 %changelog
+* Wed Jul 10 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.1.0-3
+- Add dependency to fontconfig back, to compensate for missing dependency
+  in plymouth-scripts.
+
 * Thu Jun 20 2024 Samuel Verschelde <stormi-xcp@ylix.fr> - 1.1.0-2
 - Remove unnecessary dependency to gnu-free-sans-font
 
